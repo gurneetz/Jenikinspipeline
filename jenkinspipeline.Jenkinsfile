@@ -48,16 +48,19 @@ pipeline {
         success {
             echo '--- Pipeline Successful ---'
             // Send success notification email with logs as attachment
-            emailext subject: 'Pipeline Successful',
-                body: 'The Jenkins pipeline has completed successfully.',
-                to: 'Gurneets.in@gmail.com'
+                mail to: 'Gurneets.in@gmail.com',
+                subject: 'Pipeline Successful',
+                body: 'The Jenkins pipeline has completed successfully.'
+                
         }
         failure {
             echo '--- Pipeline Failed ---'
             // Send failure notification email with logs as attachment
-            emailext subject: 'Pipeline Failed',
+                mail to: 'Gurneets.in@gmail.com'
+
+                subject: 'Pipeline Failed',
                 body: 'The Jenkins pipeline has failed. Please check the logs for details.',
-                to: 'Gurneets.in@gmail.com'
+             
         }
     }
 }
