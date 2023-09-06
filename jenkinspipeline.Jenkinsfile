@@ -1,65 +1,44 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-                echo '--- Building the code ---'
-                sh 'mvn clean package' // You can replace this with your build commands
+                // Add build commands here (e.g., Maven)
             }
         }
-
         stage('Unit and Integration Tests') {
             steps {
-                echo '--- Running unit and integration tests ---'
-                sh 'mvn test' // Replace with your test commands
+                // Add testing commands here (e.g., Maven test)
             }
         }
-
         stage('Code Analysis') {
             steps {
-                echo '--- Performing code analysis ---'
-                // Integrate with your code analysis tool, e.g., SonarQube
-                // Example: sh 'sonar-scanner'
+                // Add code analysis tool commands here
             }
         }
-
         stage('Security Scan') {
             steps {
-                echo '--- Performing security scan ---'
-                // Integrate with your security scanning tool, e.g., OWASP ZAP
-                // Example: sh 'zap-cli --quick-scan -t http://your-app-url'
+                // Add security scanning tool commands here
             }
         }
-
         stage('Deploy to Staging') {
             steps {
-                echo '--- Deploying to staging environment ---'
-                // Use your deployment tool or script to deploy to staging, e.g., AWS CodeDeploy
-                // Example: sh 'aws deploy create-deployment ...'
+                // Add deployment commands here
             }
         }
-
         stage('Integration Tests on Staging') {
             steps {
-                echo '--- Running integration tests on staging environment ---'
-                // Run integration tests on the staging environment
-                // Example: sh 'mvn verify -Pstaging'
+                // Add integration tests on staging commands here
             }
         }
-
         stage('Deploy to Production') {
             steps {
-                echo '--- Deploying to production environment ---'
-                // Use your deployment tool or script to deploy to production, e.g., AWS CodeDeploy
-                // Example: sh 'aws deploy create-deployment ...'
+                // Add deployment to production commands here
             }
         }
     }
-
     post {
-        
-     success {
+        success {
             // Send success notification email with logs as attachment
             emailext subject: 'Pipeline Successful',
                 body: 'The Jenkins pipeline has completed successfully.',
