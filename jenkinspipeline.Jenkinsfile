@@ -57,7 +57,6 @@ pipeline {
             echo '--- Pipeline Failed ---'
             // Send failure notification email with logs as attachment
                 mail to: 'Gurneets.in@gmail.com'
-
                 subject: 'Pipeline Failed',
                 body: 'The Jenkins pipeline has failed. Please check the logs for details.',
              
