@@ -52,17 +52,11 @@ pipeline {
         }
     }
     post {
-        success {
+        
             // Send success notification email with logs as attachment
             emailext subject: 'Pipeline Successful',
                 body: 'The Jenkins pipeline has completed successfully.',
                 to: 'Gurneetgarry.in@gmail.com'
-        }
-        failure {
-            // Send failure notification email with logs as attachment
-            emailext subject: 'Pipeline Failed',
-                body: 'The Jenkins pipeline has failed. Please check the logs for details.',
-                to: 'Gurneetgarry.in@gmail.com'
-        }
+       
     }
 }
