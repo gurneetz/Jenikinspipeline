@@ -4,60 +4,68 @@ pipeline {
         stage('Build') {
             steps {
                 echo '--- Building the code ---'
-                // Add build commands here (e.g., Maven)
+                echo 'Building MVN...'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo '--- Running unit and integration tests ---'
-                // Add testing commands here (e.g., Maven test)
+                echo 'Running  Maven tests...'
             }
         }
         stage('Code Analysis') {
             steps {
                 echo '--- Performing code analysis ---'
-                // Add code analysis tool commands here
+                echo 'Performing code analysis...'
             }
         }
         stage('Security Scan') {
             steps {
                 echo '--- Performing security scan ---'
-                // Add security scanning tool commands here
+                echo 'Performing security scan...'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo '--- Deploying to staging environment ---'
-                // Add deployment commands here
+                echo 'Deploying to staging environment...'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo '--- Running integration tests on staging environment ---'
-                // Add integration tests on staging commands here
+                echo 'Running integration tests on staging environment...'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo '--- Deploying to production environment ---'
-                // Add deployment to production commands here
+                echo 'Deploying to production environment...'
             }
         }
     }
-    post {
+     post {
         success {
             echo '--- Pipeline Successful ---'
             // Send success notification email with logs as attachment
-            mail to: 'Gurneets.in@gmail.com',
-                subject: 'Pipeline Successful',
-                body: 'The Jenkins pipeline has completed successfully.'
+            emailext subject: 'Pipeline Successful',
+                body: 'The Jenkins pipeline has completed successfully. See attached build log for details.',
+                to: 'Gurneets.in@gmail.com',
+                attachLog: true
         }
         failure {
             echo '--- Pipeline Failed ---'
             // Send failure notification email with logs as attachment
-            mail to: 'Gurneets.in@gmail.com',
-                subject: 'Pipeline Failed',
-                body: 'The Jenkins pipeline has failed. Please check the logs for details.'
+            emailext subject: 'Pipeline Failed',
+                body: 'The Jenkins pipeline has failed. See attached build log for details.',
+                to: 'Gurneets.in@gmail.com',
+                attachLog: true
         }
     }
 }
+
+
+
+
+
+
