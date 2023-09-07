@@ -17,7 +17,9 @@ pipeline {
                     echo '--- Sending email notification after tests ---'
                     emailext subject: 'Tests Completed',
                         body: 'Unit and integration tests have completed.',
-                        to: 'Gurneets.in@gmail.com'
+                        to: 'Gurneets.in@gmail.com',
+                        attachLog: true // Attach the current step's log
+                        attachFile: '**/build.log' // Attach the build log
                 }
             }
         }
@@ -37,7 +39,9 @@ pipeline {
                     echo '--- Sending email notification after security scan ---'
                     emailext subject: 'Security Scan Completed',
                         body: 'Security scan has completed.',
-                        to: 'Gurneets.in@gmail.com'
+                        to: 'Gurneets.in@gmail.com',
+                        attachLog: true // Attach the current step's log
+                        attachFile: '**/build.log' // Attach the build log
                 }
             }
         }
