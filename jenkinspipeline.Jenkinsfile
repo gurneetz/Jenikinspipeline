@@ -45,23 +45,23 @@ pipeline {
         }
     }
    
-  post {
-    success {
-        echo '--- Pipeline Successful ---'
-        // Send success notification email with logs as attachment
-        mail to: 'Gurneets.in@gmail.com',
-            subject: 'Pipeline Successful',
-            body: 'The Jenkins pipeline has completed successfully. See attached build log for details.'
+   post {
+        success {
+            echo '--- Pipeline Successful ---'
+            // Send success notification email with logs as attachment
+                mail to: 'Gurneets.in@gmail.com',
+                subject: 'Pipeline Successful',
+                body: 'The Jenkins pipeline has completed successfully.'
+                
+        }
+        failure {
+            echo '--- Pipeline Failed ---'
+            // Send failure notification email with logs as attachment
+                mail to: 'Gurneets.in@gmail.com'
+
+                subject: 'Pipeline Failed',
+                body: 'The Jenkins pipeline has failed. Please check the logs for details.',
+             
+        }
     }
-    failure {
-        echo '--- Pipeline Failed ---'
-        // Send failure notification email with logs as attachment
-        mail to: 'Gurneets.in@gmail.com',
-            subject: 'Pipeline Failed',
-            body: 'The Jenkins pipeline has failed. See attached build log for details.'
-    }
-}
-
-
-
 
