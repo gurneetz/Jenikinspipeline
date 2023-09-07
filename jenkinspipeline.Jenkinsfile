@@ -1,28 +1,4 @@
-post {
-        success {
-            echo '--- Pipeline Successful ---'
-            // Send success notification email with logs as attachment
-            mail to: 'Gurneets.in@gmail.com',
-                subject: 'Pipeline Successful',
-                body: 'The Jenkins pipeline has completed successfully. See attached build log for details.',
-                attachmentsPattern: '**/build.log'
-        }
-        failure {
-            echo '--- Pipeline Failed ---'
-            // Send failure notification email with logs as attachment
-            mail to: 'Gurneets.in@gmail.com',
-                subject: 'Pipeline Failed',
-                body: 'The Jenkins pipeline has failed. See attached build log for details.',
-                attachmentsPattern: '**/build.log'
-        }
-    }
-}
-In this script, we're using the mail step to send email notifications. To include the build log as an attachment, we specify the attachmentsPattern: '**/build.log' option. Make sure that the build log file is generated as "build.log" during the pipeline execution so that it can be attached to the email. Adjust the attachmentsPattern accordingly if your log file has a different name or path.
 
-
-
-
-User
 pipeline {
     agent any
     stages {
