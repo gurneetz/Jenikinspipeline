@@ -52,7 +52,7 @@ pipeline {
             emailext subject: 'Pipeline Successful',
                 body: 'The Jenkins pipeline has completed successfully. See attached build log for details.',
                 to: 'Gurneets.in@gmail.com',
-                attachmentsPattern: '**/build.log'
+                attachmentsPattern: '****/build.log'
         }
         failure {
             echo '--- Pipeline Failed ---'
@@ -60,7 +60,7 @@ pipeline {
             emailext subject: 'Pipeline Failed',
                 body: 'The Jenkins pipeline has failed. Please check the logs for details.',
                 to: 'Gurneets.in@gmail.com',
-                attachmentsPattern: '**/build.log'
+                attachmentsPattern: '****/build.log'
         }
     }
 }
