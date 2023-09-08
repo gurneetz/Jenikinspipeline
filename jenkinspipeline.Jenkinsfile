@@ -13,13 +13,17 @@ pipeline {
                 echo 'Running Maven tests...'
             }
             post {
-                always {
-                    echo '--- Sending email notification after tests ---'
-                    emailext subject: 'Tests Completed',
-                        body: 'Unit and integration tests have completed.',
-                        to: 'Gurneets.in@gmail.com',
-                        attachLog: true // Attach the current step's log
-                        attachFile: '${WORKSPACE}/build.log' // Attach the build log
+                success {
+                    echo '--- Tests Succeeded ---'
+                    emailext subject: 'Tests Completed - Success',
+                        body: 'Unit and integration tests have completed successfully.',
+                        to: 'Gurneets.in@gmail.com'
+                }
+                failure {
+                    echo '--- Tests Failed ---'
+                    emailext subject: 'Tests Completed - Failure',
+                        body: 'Unit and integration tests have failed.',
+                        to: 'Gurneets.in@gmail.com'
                 }
             }
         }
@@ -35,13 +39,17 @@ pipeline {
                 echo 'Performing security scan...'
             }
             post {
-                always {
-                    echo '--- Sending email notification after security scan ---'
-                    emailext subject: 'Security Scan Completed',
-                        body: 'Security scan has completed.',
-                        to: 'Gurneets.in@gmail.com',
-                        attachLog: true // Attach the current step's log
-                        attachFile: '${WORKSPACE}/build.log' // Attach the build log
+                success {
+                    echo '--- Security Scan Succeeded ---'
+                    emailext subject: 'Security Scan Completed - Success',
+                        body: 'Security scan has completed successfully.',
+                        to: 'Gurneets.in@gmail.com'
+                }
+                failure {
+                    echo '--- Security Scan Failed ---'
+                    emailext subject: 'Security Scan Completed - Failure',
+                        body: 'Security scan has failed.',
+                        to: 'Gurneets.in@gmail.com'
                 }
             }
         }
