@@ -19,7 +19,7 @@ pipeline {
                         body: 'Unit and integration tests have completed.',
                         to: 'Gurneets.in@gmail.com',
                         attachLog: true // Attach the current step's log
-                        attachFile: '*build.log' // Attach the build log
+                        attachFile: '${WORKSPACE}/build.log' // Attach the build log
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
                         body: 'Security scan has completed.',
                         to: 'Gurneets.in@gmail.com',
                         attachLog: true // Attach the current step's log
-                        attachFile: '*build.log' // Attach the build log
+                        attachFile: '${WORKSPACE}/build.log' // Attach the build log
                 }
             }
         }
