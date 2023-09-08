@@ -18,12 +18,14 @@ pipeline {
                     emailext subject: 'Tests Completed - Success',
                         body: 'Unit and integration tests have completed successfully.\n\n${BUILD_LOG, maxLines=1000}',
                         to: 'Gurneets.in@gmail.com'
+                          attachLog: true
                 }
                 failure {
                     echo '--- Tests Failed ---'
                     emailext subject: 'Tests Completed - Failure',
                         body: 'Unit and integration tests have failed.\n\n${BUILD_LOG, maxLines=1000}',
                         to: 'Gurneets.in@gmail.com'
+                        attachLog: true
                 }
             }
         }
@@ -44,12 +46,14 @@ pipeline {
                     emailext subject: 'Security Scan Completed - Success',
                         body: 'Security scan has completed successfully.\n\n${BUILD_LOG, maxLines=1000}',
                         to: 'Gurneets.in@gmail.com'
+                        attachLog: true
                 }
                 failure {
                     echo '--- Security Scan Failed ---'
                     emailext subject: 'Security Scan Completed - Failure',
                         body: 'Security scan has failed.\n\n${BUILD_LOG, maxLines=1000}',
                         to: 'Gurneets.in@gmail.com'
+                        attachLog: true
                 }
             }
         }
